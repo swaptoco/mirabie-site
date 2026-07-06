@@ -3,18 +3,129 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mirabie — Mirabie</title>
-<link rel="stylesheet" href="style.css">
+<title>Mirabie — Every step of your journey, in one place</title>
+<meta name="description" content="Mirabie is a private IVF & pregnancy companion. Track cycles, medications, appointments, documents and costs — and share your journey with the people you trust.">
+<style>
+:root { --accent:#E8857A; --accent-dark:#d96f63; --cream:#FFF8F6; --ink:#463a38; --muted:#8a7a77; }
+* { box-sizing:border-box; margin:0; }
+body { font-family:Georgia,'Times New Roman',serif; color:var(--ink); background:var(--cream); line-height:1.7; }
+a { color:var(--accent); }
+.wrap { max-width:1040px; margin:0 auto; padding:0 24px; }
+
+nav { position:sticky; top:0; background:rgba(255,248,246,.92); backdrop-filter:blur(8px); border-bottom:1px solid #f2dcd7; z-index:10; }
+.nav-inner { display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+.brand { display:flex; align-items:center; gap:10px; font-weight:bold; font-size:20px; color:var(--accent); text-decoration:none; }
+.brand svg { width:32px; height:32px; }
+.nav-links a { color:var(--muted); text-decoration:none; margin-left:22px; font-size:15px; }
+.nav-links a:hover { color:var(--accent); }
+
+.hero { display:flex; align-items:center; gap:48px; padding:72px 0 56px; flex-wrap:wrap; }
+.hero-copy { flex:1 1 380px; }
+.hero h1 { font-size:44px; line-height:1.2; color:var(--ink); }
+.hero h1 em { color:var(--accent); font-style:normal; }
+.hero p.lead { font-size:19px; color:var(--muted); margin:18px 0 28px; }
+.badge { display:inline-block; background:#1a1a1a; color:#fff; font-family:-apple-system,Helvetica,sans-serif; padding:12px 22px; border-radius:12px; text-decoration:none; font-size:15px; }
+.badge small { display:block; font-size:11px; opacity:.75; }
+.hero-note { font-size:13px; color:var(--muted); margin-top:12px; }
+.phone { flex:0 0 300px; margin:0 auto; }
+.phone img { width:300px; border-radius:36px; border:10px solid #2b2422; box-shadow:0 24px 60px rgba(70,58,56,.25); display:block; }
+
+section { padding:56px 0; }
+h2 { font-size:30px; text-align:center; margin-bottom:8px; }
+.sub { text-align:center; color:var(--muted); margin-bottom:40px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+.card { background:#fff; border:1px solid #f2dcd7; border-radius:18px; padding:26px; }
+.card .ico { font-size:28px; }
+.card h3 { margin:10px 0 6px; font-size:19px; }
+.card p { color:var(--muted); font-size:15px; }
+
+.privacy { background:linear-gradient(160deg,#fdeeea, #fff8f6); border-radius:24px; padding:48px 32px; }
+.privacy .grid { margin-top:28px; }
+.privacy .card { background:rgba(255,255,255,.75); }
+
+.together { text-align:center; }
+.together blockquote { font-size:21px; max-width:640px; margin:0 auto; color:var(--ink); font-style:italic; }
+
+.disclaimer { background:#faf1ef; border-radius:16px; padding:22px 28px; font-size:14px; color:var(--muted); text-align:center; }
+
+footer { border-top:1px solid #f2dcd7; margin-top:48px; padding:32px 0; text-align:center; color:var(--muted); font-size:14px; }
+footer a { color:var(--muted); margin:0 10px; }
+
+@media (max-width:720px){ .hero h1{font-size:32px} .hero{padding-top:40px} .phone img{width:240px} }
+</style>
 </head>
 <body>
-<header><a href="index.html">Mirabie</a></header>
-<nav><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></nav>
-<main>
-<p style="text-align:center">Every step of your journey, in one place.</p>
-<p style="text-align:center">Mirabie is a personal IVF and pregnancy journey companion app —
-cycles, medications, appointments, documents and costs, organised and private.</p>
-<p style="text-align:center"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></p>
-<footer>© 2026 Mirabie</footer>
-</main>
+
+<nav><div class="wrap nav-inner">
+  <a class="brand" href="/">
+    <svg viewBox="0 0 100 100"><path d="M50 88 C 28 78, 8 62, 8 42 C 8 28, 20 18, 32 22 C 40 24, 46 32, 50 40 C 54 32, 60 24, 68 22 C 80 18, 92 28, 92 42 C 92 62, 72 78, 50 88 Z" fill="#E8857A"/><path d="M50 30 C 51 38, 54 41, 62 42 C 54 43, 51 46, 50 54 C 49 46, 46 43, 38 42 C 46 41, 49 38, 50 30 Z" fill="#fff"/></svg>
+    Mirabie
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#privacy">Privacy</a>
+    <a href="privacy.html">Policy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+</div></nav>
+
+<header class="wrap hero">
+  <div class="hero-copy">
+    <h1>Every step of your journey, <em>in one place</em>.</h1>
+    <p class="lead">Mirabie is a private companion for IVF and pregnancy —
+    cycles, medications, appointments, documents and costs, beautifully
+    organised and shared only with the people you choose.</p>
+    <a class="badge" href="#"><small>Coming soon on the</small>App Store</a>
+    <p class="hero-note">Currently in private testing · iPhone first, web included</p>
+  </div>
+  <div class="phone"><img src="app-dashboard.png" alt="Mirabie dashboard showing a current IVF cycle"></div>
+</header>
+
+<section id="features" class="wrap">
+  <h2>Made for the journey you're on</h2>
+  <p class="sub">Fertility treatment is a lot to carry. Mirabie carries the admin.</p>
+  <div class="grid">
+    <div class="card"><div class="ico">🧬</div><h3>Cycles, start to finish</h3><p>IVF, FET and IUI cycles with retrievals, embryos and transfers — your whole protocol in one timeline.</p></div>
+    <div class="card"><div class="ico">💉</div><h3>Medications & reminders</h3><p>Doses, injection times and daily reminders, with a 7-day adherence view so nothing slips.</p></div>
+    <div class="card"><div class="ico">🗂️</div><h3>A vault for every report</h3><p>Blood tests, scans, PGT results and clinic letters — uploaded, tagged, searchable, private.</p></div>
+    <div class="card"><div class="ico">📅</div><h3>Appointments that remind you</h3><p>Scans, blood draws and transfers on a calendar with reminders ahead of every visit.</p></div>
+    <div class="card"><div class="ico">💛</div><h3>Share with the people you trust</h3><p>Invite your partner or clinic with exactly the access you choose — view or edit, revoke anytime.</p></div>
+    <div class="card"><div class="ico">🌱</div><h3>Pregnancy, week by week</h3><p>When the big day comes: gestational tracking, beta hCG, ultrasounds and a keepsake journal.</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div id="privacy" class="privacy">
+    <h2>Private by design</h2>
+    <p class="sub">This is some of the most personal data there is. We treat it that way.</p>
+    <div class="grid">
+      <div class="card"><h3>🔒 Encrypted</h3><p>Data encrypted in transit and at rest, protected by row-level security — only your account can read your records.</p></div>
+      <div class="card"><h3>🇦🇺 Stored in Australia</h3><p>Your records live in Sydney-region infrastructure and never leave without your say-so.</p></div>
+      <div class="card"><h3>🚫 No ads, no tracking</h3><p>No advertising SDKs, no analytics trackers, no selling data. Your journey is not a product.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap together">
+  <blockquote>“Built by a couple going through IVF, for everyone walking the same road.”</blockquote>
+</section>
+
+<section class="wrap">
+  <div class="disclaimer">
+    Mirabie is a personal organiser — not a medical device and not a source of medical
+    advice. Always talk to your fertility specialist or doctor about medical decisions.
+    See our <a href="terms.html">Terms of Use</a>.
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <div>
+    <a href="privacy.html">Privacy Policy</a> ·
+    <a href="terms.html">Terms of Use</a> ·
+    <a href="mailto:mirabiesupport@gmail.com">Contact</a>
+  </div>
+  <div style="margin-top:8px">© 2026 Mirabie</div>
+</div></footer>
+
 </body>
 </html>
