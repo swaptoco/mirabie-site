@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Email confirmed — Mirabie</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><a href="index.html">Mirabie</a></header>
+<main>
+<h1>Email confirmed &#10003;</h1>
+<p id="mobile-msg" style="display:none">Opening the Mirabie app&hellip;</p>
+<p id="mobile-fallback" style="display:none">If the app didn't open automatically, tap the button below.</p>
+<p id="desktop-msg" style="display:none">Your email address is verified. Now open the <strong>Mirabie app on your phone</strong> and sign in with your email and password &mdash; you're all set.</p>
+<p><a id="open-app" href="mirabie:///" style="display:none;font-weight:700">Open Mirabie</a></p>
+<script>
+// The Supabase confirm link redirects here with auth tokens in the URL hash.
+// On a phone, forward the whole hash into the app's deep link so it can sign
+// the user in automatically. On a computer the app link can't open — tell the
+// user to continue on their phone instead of leaving them on a blank page.
+(function () {
+  var appUrl = 'mirabie:///' + (window.location.hash || '');
+  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (isMobile) {
+    document.getElementById('mobile-msg').style.display = 'block';
+    document.getElementById('mobile-fallback').style.display = 'block';
+    var btn = document.getElementById('open-app');
+    btn.href = appUrl;
+    btn.style.display = 'inline-block';
+    window.location.href = appUrl;
+  } else {
+    document.getElementById('desktop-msg').style.display = 'block';
+  }
+})();
+</script>
+<footer>© 2026 Mirabie</footer>
+</main>
+</body>
+</html>
