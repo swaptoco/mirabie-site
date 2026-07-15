@@ -40,7 +40,7 @@
       --bg-deep:#241B19;
       --halo:#1A1413;
       --ink:#FFF3EF;
-      --ink-soft:#C4ABA4;
+      --ink-soft:#DCCAC4;
       --coral:#F6A99E;
       --coral-deep:#E8857A;
       --blush:#3A2C29;
@@ -49,15 +49,15 @@
       --line:rgba(255,243,239,.16);
       --panel-bg:#120D0C;
       --panel-ink:#FFF3EF;
-      --panel-soft:rgba(255,243,239,.6);
+      --panel-soft:rgba(255,243,239,.78);
       --shadow:0 24px 60px -24px rgba(0,0,0,.6);
     }
   }
   :root[data-theme="dark"]{
-    --bg:#1A1413; --bg-deep:#241B19; --halo:#1A1413; --ink:#FFF3EF; --ink-soft:#C4ABA4;
+    --bg:#1A1413; --bg-deep:#241B19; --halo:#1A1413; --ink:#FFF3EF; --ink-soft:#DCCAC4;
     --coral:#F6A99E; --coral-deep:#E8857A; --blush:#3A2C29;
     --teal:#A6D4D1; --lavender:#DCC2E6; --line:rgba(255,243,239,.16);
-    --panel-bg:#120D0C; --panel-ink:#FFF3EF; --panel-soft:rgba(255,243,239,.6);
+    --panel-bg:#120D0C; --panel-ink:#FFF3EF; --panel-soft:rgba(255,243,239,.78);
     --shadow:0 24px 60px -24px rgba(0,0,0,.6);
   }
   :root[data-theme="light"]{
@@ -261,8 +261,12 @@
   .pv-share .grad{background:linear-gradient(110deg, #7FB3B0, #FCE0DB 60%, #E8857A)}
   .panel-visual .label{
     position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    padding:0 28px; box-sizing:border-box; text-align:center; line-height:2;
     font-size:12px; letter-spacing:.34em; text-transform:uppercase; color:rgba(255,255,255,.85);
     text-shadow:0 1px 8px rgba(0,0,0,.25);
+  }
+  @media (max-width:600px){
+    .panel-visual .label{font-size:11px; letter-spacing:.16em; padding:0 20px}
   }
   .pv-share .label{color:rgba(58,35,32,.82); text-shadow:0 1px 6px rgba(255,255,255,.35)}
   @media (max-width:840px){ .panel-row{grid-template-columns:1fr} }
@@ -366,10 +370,28 @@
   :root, :root[data-theme="light"], :root[data-theme="dark"]{
     --halo-shadow:0 0 4px var(--halo), 0 0 10px var(--halo), 0 0 18px var(--halo), 0 0 32px var(--halo);
   }
+  /* dark ground needs a denser halo — bright particles otherwise sit on the letterforms */
+  @media (prefers-color-scheme: dark){
+    :root{--halo-shadow:0 0 2px var(--halo), 0 0 5px var(--halo), 0 0 9px var(--halo), 0 0 14px var(--halo), 0 0 22px var(--halo), 0 0 34px var(--halo), 0 0 48px var(--halo)}
+  }
+  :root[data-theme="dark"]{--halo-shadow:0 0 2px var(--halo), 0 0 5px var(--halo), 0 0 9px var(--halo), 0 0 14px var(--halo), 0 0 22px var(--halo), 0 0 34px var(--halo), 0 0 48px var(--halo)}
+  :root[data-theme="light"]{--halo-shadow:0 0 4px var(--halo), 0 0 10px var(--halo), 0 0 18px var(--halo), 0 0 32px var(--halo)}
   .panels, footer{
     --halo:var(--panel-bg);
     --halo-shadow:0 1px 3px var(--halo), 0 0 6px var(--halo), 0 0 10px var(--halo);
   }
+
+  /* ============ store toast ============ */
+  #toast{
+    position:fixed; left:50%; bottom:30px; transform:translate(-50%,16px);
+    z-index:80; background:var(--panel-bg); color:var(--panel-ink);
+    padding:15px 24px; border-radius:16px; font-size:14.5px; line-height:1.55;
+    max-width:min(92vw,430px); text-align:center;
+    box-shadow:0 14px 44px rgba(0,0,0,.4);
+    opacity:0; pointer-events:none; transition:opacity .45s ease, transform .45s ease;
+  }
+  #toast.show{opacity:1; transform:translate(-50%,0); pointer-events:auto}
+  #toast a{color:var(--coral); text-decoration:none; font-weight:600}
 
   @media (prefers-reduced-motion: reduce){
     *, *::before, *::after{animation:none !important; transition:none !important}
@@ -391,7 +413,7 @@
     <a href="#features">Features</a>
     <a href="#privacy">Privacy</a>
     <a href="#story">My story</a>
-    <a class="cta" href="#download">Get the app</a>
+    <a class="cta" href="#download" data-store>Get the app</a>
   </div>
 </nav>
 
@@ -409,7 +431,7 @@
   </h1>
   <p class="lede">Mirabie keeps your IVF cycle in one calm, private place — medications, appointments, embryos, scans, and the feelings in between. Built for the days that ask a lot of you.</p>
   <div class="actions">
-    <a class="btn primary" href="#download">Download on the App Store</a>
+    <a class="btn primary" href="#download" data-store>Download on the App Store</a>
     <a class="btn ghost" href="#journey">See how it works</a>
   </div>
   <div class="scroll-hint">Scroll</div>
@@ -555,7 +577,7 @@
   <h2 class="serif reveal">Whatever this journey brings, arrive <em>prepared.</em></h2>
   <p class="reveal">Free on the App Store. Private from the first tap.</p>
   <div class="actions reveal">
-    <a class="btn primary" href="#" title="Coming soon to the App Store">Download Mirabie</a>
+    <a class="btn primary" href="#download" data-store>Download Mirabie</a>
   </div>
 </section>
 
@@ -593,9 +615,26 @@
   </div>
 </footer>
 
+<div id="toast" role="status"></div>
+
 <script>
 (function(){
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* app store buttons — set STORE_URL once the app is approved and they link straight out */
+  var STORE_URL = ''; // e.g. 'https://apps.apple.com/app/id6787588567'
+  var toast = document.getElementById('toast');
+  var toastTimer = null;
+  document.querySelectorAll('[data-store]').forEach(function(a){
+    a.addEventListener('click', function(ev){
+      if(STORE_URL){ ev.preventDefault(); window.open(STORE_URL, '_blank', 'noopener'); return; }
+      ev.preventDefault();
+      toast.innerHTML = 'Mirabie is in its final App Store review — almost here. <a href="mailto:mirabiesupport@gmail.com?subject=Tell%20me%20when%20Mirabie%20is%20live">Email us</a> and we’ll tell you the moment it’s live.';
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 6000);
+    });
+  });
 
   /* nav */
   var nav = document.getElementById('nav');
@@ -785,7 +824,7 @@
     var wob = reduced ? 0 : scale*0.008;
     var tealR = 90+37*dCur, tealG = 146+33*dCur, tealB = 142+34*dCur;
     var portrait = w < h;
-    var baseA = (0.42+0.03*dCur) * (portrait?0.68:1); // quieter watermark behind narrow text columns
+    var baseA = (0.42+0.03*dCur) * (portrait?0.42:1); // quieter watermark behind narrow text columns
     for(var b=0;b<4;b++){
       var m = bucketMix[b], idx = buckets[b];
       ctx.fillStyle = 'rgba('+((cr+(tealR-cr)*m)|0)+','+((cg+(tealG-cg)*m)|0)+','+((cb+(tealB-cb)*m)|0)+','+(baseA+m)+')';
