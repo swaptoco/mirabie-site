@@ -14,7 +14,7 @@
 <body>
 <header><a href="index.html">Mirabie</a></header>
 <main>
-<h1>Email confirmed &#10003;</h1>
+<h1 id="title">Email confirmed &#10003;</h1>
 <p id="mobile-msg" style="display:none">Opening the Mirabie app&hellip;</p>
 <p id="mobile-fallback" style="display:none">If the app didn't open automatically, tap the button below.</p>
 <p id="desktop-msg" style="display:none">Your email address is verified. Now open the <strong>Mirabie app on your phone</strong> and sign in with your email and password &mdash; you're all set.</p>
@@ -27,6 +27,14 @@
 (function () {
   var appUrl = 'mirabie:///' + (window.location.hash || '');
   var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  // "Forgot password" links land here too (type=recovery): same forwarding,
+  // different words, and the app then asks for the new password.
+  if (/(^|[#&])type=recovery(&|$)/.test(window.location.hash)) {
+    document.title = 'Reset your password — Mirabie';
+    document.getElementById('title').textContent = 'Reset your password';
+    document.getElementById('mobile-msg').textContent = 'Opening the Mirabie app so you can choose a new password\u2026';
+    document.getElementById('desktop-msg').innerHTML = 'Password reset links open in the <strong>Mirabie app on your phone</strong>. Open the reset email on your phone and tap the link there. If you already used it here, request a new one: in the app, tap <strong>Forgot password?</strong> on the sign-in screen.';
+  }
   if (isMobile) {
     document.getElementById('mobile-msg').style.display = 'block';
     document.getElementById('mobile-fallback').style.display = 'block';
